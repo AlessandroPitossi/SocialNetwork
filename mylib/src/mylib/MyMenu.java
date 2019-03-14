@@ -1,5 +1,6 @@
 package mylib;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 /*
@@ -11,15 +12,15 @@ e sia presentata in fondo al menu
 */
 public class MyMenu
 {
-  final private static String CORNICE = "----------------------------------------";
+  final private static String CORNICE = "-------------------------------------------------";
   final private static String VOCE_USCITA = "0\tEsci";
   final private static String RICHIESTA_INSERIMENTO = "Digita il numero dell'opzione desiderata > ";
 
   private String titolo;
-  private Vector <String> voci=new Vector<>();
+  private ArrayList <String> voci=new ArrayList<>();
 
 	
-  public MyMenu (String titolo, Vector <String> voci)
+  public MyMenu (String titolo, ArrayList <String> voci)
   {
 	this.titolo = titolo;
 	this.voci = voci;
@@ -38,6 +39,12 @@ public int scegli ()
 	stampaMenu();
 	return InputDati.leggiIntero(RICHIESTA_INSERIMENTO, 0, voci.size());	 
   }
+
+public int scegli (String s)
+{
+	stampaMenu();
+	return InputDati.leggiIntero(s, 0, voci.size());	 
+}
 		
   public void stampaMenu ()
   {
@@ -58,6 +65,12 @@ public int scegli ()
 	stampaMenuSenzaEsci();
 	return InputDati.leggiIntero(RICHIESTA_INSERIMENTO, 1, voci.size());	 
   }
+  
+  public int scegliSenzaEsci (String s)
+  {
+	stampaMenuSenzaEsci();
+	return InputDati.leggiIntero(s, 1, voci.size());	 
+  }
 		
   
   public void stampaMenuSenzaEsci ()
@@ -72,7 +85,7 @@ public int scegli ()
   }
 		
   public static void main(String [] args) {
-	  String titolo="Titolissimo";
+	  String titolo="Scegli l'evento di cui creare l'evento, ma proprio un evento bello";
 	  String [] voci= {"V1", "vbdusi"};
 	  MyMenu m=new MyMenu(titolo, voci);
 	  m.stampaMenu();
